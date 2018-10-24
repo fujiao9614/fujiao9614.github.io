@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="JiaojiaoFu"><link rel="alternative" href="/atom.xml" title="姣姣的个人主页" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>正则表达式 - 姣姣的个人主页</title><link rel="stylesheet" href="/css/main.css" type="text/css">
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css" type="text/css">
+<!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="/js/fancybox/jquery.fancybox.min.js" type="text/javascript"></script>
+</head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">姣姣的个人主页</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-10-23T16:00:00.000Z">October 24, 2018</time><h1 class="post__title"><a href="/2018/10/24/Java_46_正则表达式/">正则表达式</a></h1><div class="post__main echo"><p>学会使用正则表达式，正则表达式在 String 类型数据的应用<br><a id="more"></a></p>
+<h3 id="正则表达式">正则表达式</h3>
+<p><strong>示例</strong>： 判断一个字符串是否全由数字组成  </p>
+<ol>
+<li>不使用正则表达式的形式</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str = <span class="string">"123"</span>; </div><div class="line">        System.out.println(isNumber(str));</div><div class="line"></div><div class="line">    }</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isNumber</span>(String str){</div><div class="line">        <span class="keyword">char</span>[] data = str.toCharArray();    <span class="comment">// 1. 将字符串转换为字符数组</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; data.length; i++){ <span class="comment">// 2. 对字符数组中的每个元素进行判断</span></div><div class="line">            <span class="keyword">if</span>(data[i] &gt; <span class="string">'9'</span> || data[i] &lt; <span class="string">'0'</span>){</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            }</div><div class="line">        }</div><div class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>使用正则表达式的形式</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str = <span class="string">"123"</span>;</div><div class="line">        System.out.println(str.matches(<span class="string">"\\d+"</span>));</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>正则支持的类都定义在 java.util.regex 包里，该包定义了两个主要的类：</p>
+<ul>
+<li>Pattern 类：此类对象要想取得必须使用 compile() 方法，方法的功能是编译正则（正则类对象要想取得，必须先编译）。</li>
+<li>Matcher 类：通过 Pattern 类取得。</li>
+</ul>
+<h4 id="2-_正则标记（必须记住）">2. 正则标记（必须记住）</h4>
+<p>所有的正则标记都在 java.util.regex.Pattern 类中定义。</p>
+<ol>
+<li>单个字符（数量：1）</li>
+</ol>
+<ul>
+<li>字符：表示由一位字符所组成；</li>
+<li><code>\\</code>：表示转义字符 “\” ；</li>
+<li><code>\t</code>：表示一个 “\t”；</li>
+<li><code>\n</code>：匹配换行（\n）符号</li>
+</ul>
+<ol start="2">
+<li>字符集（数量：1）</li>
+</ol>
+<ul>
+<li>[abc]：表示可能是字符‘a’，字符‘b’，字符‘c’中的任意一位；</li>
+<li>[^abc]：表示不是a、b、c中的任意一位</li>
+<li>[a-z]：所有的小写字母</li>
+<li>[a-zA-Z]：表示任意的一位字母，不区分大小写</li>
+<li>[0-9]：表示任意一位数字</li>
+</ul>
+<ol start="3">
+<li>简化的字符集表达式（数量：1）</li>
+</ol>
+<ul>
+<li>. ：表示任意一位字符</li>
+<li>\d：等价于“[0-9]”，属于简化写法；</li>
+<li>\D：等价于“[^0-9]”，属于简化写法；</li>
+<li>\s：表示任意的空白字符，例如“\t”，“\n”；</li>
+<li>\S：表示任意的非空白字符；</li>
+<li>\w：等价于“[a-zA-Z_0-9]”，表示由任意的字母、数字和下划线_所组成</li>
+<li>\W：等价于“[^a-zA-Z_0-9]”，表示不是由任意的字母、数字和下划线_所组成</li>
+</ul>
+<ol start="4">
+<li>边界匹配（不要在 Java 中使用，应该在 JavaScript 中使用）</li>
+</ol>
+<ul>
+<li>^：正则的开始；</li>
+<li>$：整则的结束。</li>
+</ul>
+<ol start="5">
+<li>数量表达</li>
+</ol>
+<ul>
+<li>正则?：表示此正则可以出现 0 次或 1 次；</li>
+<li>正则+：表示此正则可以出现 1 次或 1 次以上；</li>
+<li>正则*：表示此正则可以出现 0 次、 1 次或 1 次以上；</li>
+<li>正则{n}：表示此正则正好出现 n 次；</li>
+<li>正则{n,}：表示此正则可以出现 n 次以上(包括 n 次)；</li>
+<li>正则{n,m}：表示此正则可以出现 n~m 次，包含 n、m。</li>
+</ul>
+<ol start="6">
+<li>逻辑运算</li>
+</ol>
+<ul>
+<li>正则 1 正则 2：正则 1 判断完成之后继续判断正则 2；</li>
+<li>正则 1 |正则 2：正则 1 或者正则 2 有一组满足即可；</li>
+<li>(正则)：将多个正则作为一组，可以为这一组单独设置出现的次数。</li>
+</ul>
+<h4 id="3-_String_类对正则的支持（重点）">3. String 类对正则的支持（重点）</h4>
+<p>String 中支持正则的几个方法：<br>No.|方法名称|类型|描述|<br>:-:|:-:|:-:|:-:|<br>1|<code>public boolean matches(String regex)</code>|普通|正则验证，使用指定的字符串验证其是否符合给出的正则表达式结构|<br>2|<code>public String replaceAll（String regex,String replacement</code>|普通|全部替换|<br>3|<code>public String replaceFirst(String regex,String replacement)</code>|普通|替换首个|<br>4|<code>public String[] split(String regex)</code>|普通|全部拆分|<br>5|<code>public String[] split(String regex,int limit)</code>|普通|部分拆分|</p>
+<p><strong>示例</strong>： 保留字符串中的字母</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str = <span class="string">"dfh23nf-;';dfha[.jehrywbm33;r"</span>;</div><div class="line">        String regex = <span class="string">"[^a-z]"</span>;</div><div class="line">        <span class="comment">// 输出 dfhnfdfhajehrywbmr</span></div><div class="line">        System.out.println(str.replaceAll(regex,<span class="string">""</span>));</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：字符串拆分</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str = <span class="string">"fdfdh223njdfjd3jsb433fn"</span>;</div><div class="line">        String regex = <span class="string">"\\d+"</span>;      <span class="comment">// [0-9]+</span></div><div class="line">        String result[] = str.split(regex);</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; result.length; i++){</div><div class="line">            System.out.println(result[i]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：验证一个字符串是否是数字，如果是将其转换为 double。（考虑整数：10，小数：10.2，不规范的数字：10. ）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="keyword">class</span> TestDemo {</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str = <span class="string">"1.0"</span>;</div><div class="line">        String regex = <span class="string">"\\d+(\\.\\d+)?"</span>;      <span class="comment">// [0-9]+</span></div><div class="line">        System.<span class="keyword">out</span>.println(str.matches(regex));</div><div class="line">        <span class="keyword">if</span>(str.matches(regex)){     <span class="comment">// 转型之前要进行验证</span></div><div class="line">            System.<span class="keyword">out</span>.println(Double.parseDouble(str));</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：判断一个给定的字符串是否是 IP 地址（IPV4）<br>IP 地址：192.168.1.1，每一段的最大是三个长度（1~3个长度都可以）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str = <span class="string">"192.110.1.1"</span>;</div><div class="line">        <span class="comment">//String regex = "\\d{1,3}(\\.\\d{1,3}){3}";</span></div><div class="line">        String regex = <span class="string">"(\\d{1,3}\\.){3}\\d{1,3}"</span>;</div><div class="line">        System.out.println(str.matches(regex));</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：给定一个字符串，判断其是否是日期格式，如果是的话转换为 Date 型数据</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str = <span class="string">"2009-10-01"</span>;</div><div class="line">        String regex = <span class="string">"\\d{4}-\\d{2}-\\d{2}"</span>;</div><div class="line">        System.out.println(str.matches(regex));</div><div class="line">        <span class="keyword">if</span>(str.matches(regex)){</div><div class="line">            <span class="keyword">try</span> {</div><div class="line">                Date date = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>).parse(str);</div><div class="line">                System.out.println(date);</div><div class="line">            } <span class="keyword">catch</span> (ParseException e) {</div><div class="line">                e.printStackTrace();</div><div class="line">            }</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：判断电话号码，一般要编写电话号码以下几种格式都是满足的：</p>
+<ul>
+<li>格式一：51283346<br>  |- “\d{7,8}”</li>
+<li>格式二：010-51283346<br>  |- “(\d{3,4}-)?\d{7,8}”</li>
+<li>格式三：(010)-51283346<br>  |- “((\d{3,4}-)|(\(\d{3,4}\)-))?\d{7,8}”</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str1 = <span class="string">"51283346"</span>;</div><div class="line">        String str2 = <span class="string">"010-51283346"</span>;</div><div class="line">        String str3 = <span class="string">"(010)-51283346"</span>;</div><div class="line">        String str4 = <span class="string">"(010)-010-51283346"</span>;</div><div class="line">        String regex = <span class="string">"((\\d{3,4}-)|(\\(\\d{3,4}\\)-))?\\d{7,8}"</span>;</div><div class="line">        System.out.println(str1.matches(regex));        <span class="comment">// true</span></div><div class="line">        System.out.println(str2.matches(regex));        <span class="comment">// true</span></div><div class="line">        System.out.println(str3.matches(regex));        <span class="comment">// true</span></div><div class="line">        System.out.println(str4.matches(regex));        <span class="comment">// false</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：验证 E-mail 地址</p>
+<ul>
+<li>要求格式一：email 由字母、数字、_所组成<br><img src="2018-10-19-14-23-46.png" alt=""><br>“\w+@\w+.\w+”</li>
+<li>要求格式二：用户名由字母、数字、_、. 组成，按长度最多为32，其中必须以字母开头，字母和数字结尾，根域名只能是 .com、.cn、 .net、 .com.cn、 .net.cn、 .edu、 .gov .org.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str1 = <span class="string">"hello._nihao123@mdln.com.cn"</span>;</div><div class="line">        String regex = <span class="string">"[a-zA-z]+[a-zA-Z0-9_\\.]{0,28}[a-zA-z0-9]+@\\w+\\.(com|cn|net|com.cn|net.cn|edu|gov|org)"</span>;</div><div class="line">        System.out.println(str1.matches(regex));        <span class="comment">// true</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>需要分块，多次写，要细心和耐心。但是我代码在实验时：</p>
+<ul>
+<li>(\w\.) 与 [\w\.]不同，后者与[a-zA-Z0-9_\.]等价（由数组、字母、_、. 组成），前者将\w与.当做一体，如果有.，那么这部分判断就结束了。</li>
+<li>[a-zA-Z0-9_\.] 中 . 可以不需要转义</li>
+</ul>
+<h4 id="4-_java-util-regex_的支持">4. java.util.regex 的支持</h4>
+<p>很多正则方法都是用 String 类中的方法完成了。我们了解一下 java.util.regex 中的两个类的使用。<br><strong>示例</strong>：Pattern</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.regex.Pattern;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str = <span class="string">"dfha23jhfj3sfj423ndnkdk"</span>;</div><div class="line">        String regex = <span class="string">"\\d+"</span>;</div><div class="line">        Pattern pattern = Pattern.compile(regex);   <span class="comment">// 编译正则</span></div><div class="line">        String result[] = pattern.split(str);       <span class="comment">// 拆分字符串</span></div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span> ;i &lt; result.length; i++){</div><div class="line">            System.out.println(result[i]);</div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p><strong>示例</strong>：字符串验证</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> java.util.regex.Matcher;</div><div class="line"><span class="keyword">import</span> java.util.regex.Pattern;</div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str = <span class="string">"1243435"</span>;</div><div class="line">        String regex = <span class="string">"\\d+"</span>;</div><div class="line">        Pattern pattern = Pattern.compile(regex);   <span class="comment">// 编译正则</span></div><div class="line">        Matcher mat = pattern.matcher(str);     <span class="comment">// 进行正则匹配</span></div><div class="line">        System.out.println(mat.matches());      <span class="comment">// 输出匹配结果</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>
+
+<p>因为 String 类本身就支持这样两种操作了，因此很少使用 Pattern 和 Matcher。</p>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/Java/">Java</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 JiaojiaoFu</div></footer><script src="/js/scroller.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+</body></html>
