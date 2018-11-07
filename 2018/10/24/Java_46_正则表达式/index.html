@@ -106,7 +106,7 @@
 
 <p><strong>示例</strong>：验证 E-mail 地址</p>
 <ul>
-<li>要求格式一：email 由字母、数字、_所组成<br><img src="2018-10-19-14-23-46.png" alt=""><br>“\w+@\w+.\w+”</li>
+<li>要求格式一：email 由字母、数字、_所组成<br><img src="Image_Java_46_正则表达式/2018-10-19-14-23-46.png" alt=""><br>“\w+@\w+.\w+”</li>
 <li>要求格式二：用户名由字母、数字、_、. 组成，按长度最多为32，其中必须以字母开头，字母和数字结尾，根域名只能是 .com、.cn、 .net、 .com.cn、 .net.cn、 .edu、 .gov .org.</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestDemo</span> </span>{</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] agrs) {</div><div class="line">        String str1 = <span class="string">"hello._nihao123@mdln.com.cn"</span>;</div><div class="line">        String regex = <span class="string">"[a-zA-z]+[a-zA-Z0-9_\\.]{0,28}[a-zA-z0-9]+@\\w+\\.(com|cn|net|com.cn|net.cn|edu|gov|org)"</span>;</div><div class="line">        System.out.println(str1.matches(regex));        <span class="comment">// true</span></div><div class="line">    }</div><div class="line">}</div></pre></td></tr></table></figure>

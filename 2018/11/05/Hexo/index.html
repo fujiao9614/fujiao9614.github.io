@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="author" content="JiaojiaoFu"><link rel="alternative" href="/atom.xml" title="姣姣的个人主页" type="application/atom+xml"><link rel="icon" href="/favicon.png"><title>Hexo 学习笔记 - 姣姣的个人主页</title><link rel="stylesheet" href="/css/main.css" type="text/css">
+<link rel="stylesheet" href="/js/fancybox/jquery.fancybox.min.css" type="text/css">
+<!--[if lt IE 9]><script>(function(a,b){a="abbr article aside audio bdi canvas data datalist details dialog figcaption figure footer header hgroup main mark meter nav output progress section summary template time video".split(" ");for(b=a.length-1;b>=0;b--)document.createElement(a[b])})()</script><![endif]--><script src="/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="/js/fancybox/jquery.fancybox.min.js" type="text/javascript"></script>
+</head><body style="opacity:0"><header class="head"><h1 class="head-title u-fl"><a href="/">姣姣的个人主页</a></h1><nav class="head-nav u-fr"><ul class="head-nav__list"><li class="head-nav__item"><a class="head-nav__link" href="/archives">カタログ/（目录）</a></li></ul></nav></header><main class="main"><article class="post"><header class="post__head"> <time class="post__time" datetime="2018-11-04T16:00:00.000Z">November 5, 2018</time><h1 class="post__title"><a href="/2018/11/05/Hexo/">Hexo 学习笔记</a></h1><div class="post__main echo"><p>利用 Hexo 做个人站点<br><a id="more"></a></p>
+<h3 id="Hexo学习笔记">Hexo学习笔记</h3>
+<h4 id="下载安装Node-js,使用教程参考(http://www-runoob-com/nodejs/nodejs-tutorial-html)">下载安装<code>Node.js</code>,使用教程参考(<a href="http://www.runoob.com/nodejs/nodejs-tutorial.html" target="_blank" rel="external">http://www.runoob.com/nodejs/nodejs-tutorial.html</a>)</h4>
+<h4 id="Hexo">Hexo</h4>
+<ol>
+<li>Hexo介绍<br>利用Hexo做站点的原理：利用Hexo将<code>*.md</code>文件转为<code>.html</code>文件上传到Github的仓库中。</li>
+</ol>
+<p><img src="2018-10-09-16-34-16.png" alt="基本原理图"><br><em>基本原理图</em></p>
+<ol start="2">
+<li><p>安装<br>全局安装 Hexo 软件，这里是安装 2.8.3 版本的 Hexo 而不是最新的，因为最新的有缺陷<br>如果安装错了，可以使用卸载命令<br><code>npm uninstall hexo -g</code><br>安装指定版本命令：<br><code>npm install -g hexo@2.8.3</code><br>安装完成后，使用如下命令检查是否安装正确，及版本号是不是正常<br><code>hexo version</code></p>
+</li>
+<li><p>准备md文件<br>新建一个 Markdown 文件 git.md，把下面的内容复制粘贴进去：</p>
+</li>
+</ol>
+<ul>
+<li>开头有一个需要描述这个笔记的元信息，使用的是 YAML 格式，可以学习一下，推荐一个教程 <a href="http://www.ruanyifeng.com/blog/2016/07/yaml.html" target="_blank" rel="external">阮一峰 YAML 语言教程</a></li>
+<li>title 表示笔记名，date 是编写日期，tags 是标签，categories 是分组，这里用了多级分组的方式，将这片笔记分到了 ☎ 经验累积/其他 分组下；<br><strong>注意:</strong> title: 后面要加<em>空格</em>，否则不能正常显示</li>
+<li>元信息必须使用 <code>---</code> 包裹起来，而且必须是第一行（其实不用，只是比较好看而已）；</li>
+<li><code>&lt;!--more--&gt;</code> 是用来分割摘要和正文的，也就是在笔记列表中只显示摘要，而在浏览全文时才全部展开；</li>
+<li>其他的元信息标记可以在 Hexo 的官网查看。</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="horizontal_rule">--- </span></div><div class="line">title: git 学习笔记</div><div class="line">date: 2018/3/20 </div><div class="line">tags: git </div><div class="line">categories:</div><div class="line"> - ☎ 经验累积</div><div class="line"> - 其他 </div><div class="line"><span class="horizontal_rule">--- </span></div><div class="line">这里是笔记摘要 blablablabla.... </div><div class="line"><span class="xml"><span class="comment">&lt;!--more--&gt;</span></span> </div><div class="line"></div><div class="line"><span class="header"># git 介绍 正文 blablabla.... </span></div><div class="line">参考资料： </div><div class="line"><span class="bullet">- </span>[<span class="link_label">廖雪峰的 git 教程</span>]  (https://www.liaoxuefeng.com/) - [<span class="link_label">菜鸟 Git 教程</span>](<span class="link_url">http://www.runoob.com/git/git-tutorial.html</span>) </div><div class="line"><span class="header">## 分支管理 最简单的方法，就是直接把 `master` 指向 `dev` 的当前提交，就完成了合并。 </span></div><div class="line">下面是正文 blablabla....</div></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>Hexo本地站点</li>
+</ol>
+<ul>
+<li>首先需要新建一个文件夹，例如在用户目录下新建mysite文件夹<br><code>mkdir mysite</code></li>
+<li>进入该目录<br><code>cd mysite</code></li>
+<li>使用 hexo init 初始化这个空目录，也就是将 Hexo 的工具拷贝一份到这里<br><code>hexo init</code></li>
+<li><p>使用命令 <code>ls</code> 可以查看当前文件夹下多了一些内容：</p>
+<ul>
+<li>_config.yml 站点配置文件，需要配置各种信息；</li>
+<li>themes 主题文件夹，里面放各种花样的主题；</li>
+<li>source Markdown 文件夹，里面放需要编译的材料；</li>
+<li>package.json 是 Hexo 的依赖清单；</li>
+<li>.gitnore git 程序的忽略配置（不重要）；</li>
+<li>scaffolds 模板文件夹，里面放模板（不重要）；</li>
+</ul>
+</li>
+<li><p>在 Hexo 可以用之前还需要给它安装依赖，使用 npm install 会根据 package.json 文件里列出的依赖全部安装，并安装在 node_modules 文件夹里。<br><code>npm install</code></p>
+</li>
+<li>运行hexo s，出现 Hexo is running 的提示后，打开浏览器 <a href="http://localhost:4000/" target="_blank" rel="external">http://localhost:4000/</a> 访问即可。<br><code>hexo s</code>，若出现 Cannot read property ‘config’ of null 问题，查看后面的Bug解决</li>
+</ul>
+<ol start="5">
+<li>自定义 Hexo</li>
+</ol>
+<ul>
+<li>修改站点名称<br>修改 hexo 的配置，让它能展现出我们自己站点的必要信息，这些必要信息在主目录的 _config.yml 文件。<br><code>title: Hexo</code>表示站点名，可以修改为<code>title: XX的个人主页</code><br>其他配置可以参考：<a href="https://eggsywelsh.github.io/2016/08/21/hexo配置详解-nextT主题/" target="_blank" rel="external">hexo配置详解(nextT主题)</a>。<br>修改后关闭控制台，重新运行能够读取新配置。</li>
+<li>主题<br>主题是 Hexo 的一张皮，主要是给站点提供多样化的外观样式，你们可以在这面这个帖子找到一些有意思的主题来玩玩<br><a href="http://www.zhihu.com/question/24422335" target="_blank" rel="external">知乎 - 有哪些好看的 Hexo 主题</a><br>下载主题文件夹后，放在主目录的 <code>themes</code> 文件夹，然后在 <code>_config.yml</code> 配置文件中修改 <code>theme</code> 一项的值为对应的文件夹名即可。比如默认的就是 <code>themes/landscape</code> 主题。</li>
+</ul>
+<ol start="6">
+<li><p>笔记<br>现在我们将之前写的 git.md 放到 <code>source/_post/</code> 目录下，并删除 hello-world.md，然后刷新 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 的页面，应该能发现我们的笔记已经出现在站点里了。<br>Hexo 的本地站点有缓存这种东西，所以如果删了 hello-world.md，页面还有的话，先关掉 Hexo，然后使用 <code>hexo clean</code> 清空缓存，再启动 Hexo。</p>
+</li>
+<li><p>部署</p>
+</li>
+</ol>
+<ul>
+<li>手动部署<blockquote>
+<p>使用 hexo g 命令将 source 文件夹下的材料生成一堆可以直接打开的 HTML 静态文件，这些静态文件就放在主目录的 public 文件夹下。双击里面的 index.html 就可以看到效果。<br>这时，可以直接将 public 文件夹整个放到你的 github.io 那个仓库里，具体的做法是把 public 文件夹当做之前上传 Markdown 文件夹一样，用 git init 初始化，add 添加文件，commit 提交，push 推送即可。<br>命令：</p>
+</blockquote>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">hexo g</div><div class="line">cd <span class="preprocessor">public</span> </div><div class="line">git init</div><div class="line">git <span class="keyword">add</span> <span class="number">2018</span>/</div><div class="line">git <span class="keyword">add</span> categories/</div><div class="line">git <span class="keyword">add</span> fancybox/</div><div class="line">git <span class="keyword">add</span> <span class="keyword">js</span>/</div><div class="line">git <span class="keyword">add</span> archives/</div><div class="line">git <span class="keyword">add</span> css/</div><div class="line">git <span class="keyword">add</span> index.html</div><div class="line">git <span class="keyword">add</span> tags/</div><div class="line">git commit -m <span class="string">"describe"</span></div><div class="line">git remote <span class="keyword">add</span> origin git@github.com:fujiao9614/fujiao9614.github.io.git</div><div class="line">git <span class="keyword">push</span> -u origin master</div></pre></td></tr></table></figure>
+
+<ul>
+<li>Hexo部署<br>Hexo 将手动所需要的流程集合成一个命令 hexo d，具体如下：<ol>
+<li>配置目标的仓库</li>
+<li>hexo d 一下即可</li>
+<li>打开你的 github.io 即可查看<br>配置需要打开 hexo 主目录的 <code>_config.yml</code> 配置文件，拉到最后，修改为如下： </li>
+</ol>
+</li>
+</ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>: <span class="string"></span></div><div class="line">  <span class="attribute">type</span>: <span class="string">github </span></div><div class="line">  <span class="attribute">repository</span>: <span class="string">git@github.com:fujiao9614/fujiao9614.github.io.git </span></div><div class="line">  <span class="attribute">branch</span>: <span class="string">master</span></div></pre></td></tr></table></figure>
+
+<h3 id="Bug解决">Bug解决</h3>
+<p>出现 Cannot read property ‘config’ of null 问题，</p>
+<blockquote>
+<p><code>[error] HexoError: Process failed: _posts/hello-world.md TypeError: Cannot read property &#39;config&#39; of null</code>  </p>
+</blockquote>
+<p>原因：hexo 依赖的版本有旧依赖<br>解决方法：是如下命令指定依赖版本：   </p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-<span class="keyword">renderer</span>-ejs<span class="variable">@0</span><span class="number">.1</span><span class="number">.0</span> hexo-<span class="keyword">renderer</span>-marked<span class="variable">@0</span><span class="number">.1</span><span class="number">.0</span> hexo-<span class="keyword">renderer</span>-stylus<span class="variable">@0</span><span class="number">.1</span><span class="number">.0</span></div></pre></td></tr></table></figure>
+
+
+<p>参考：<a href="http://silencesimon.github.io/2015/06/06/hexo-install/" target="_blank" rel="external">这个世界会好吗 - Hexo降级到v2.8.3小记</a></p>
+<p>{ “hexo”: {<br>“version”: “” } } </p>
+</div></header><footer class="post__foot u-cf"><ul class="post__tag u-fl"><li class="post__tag__item"><a class="post__tag__link" href="/tags/Hexo/">Hexo</a></li></ul></footer></article><div class="comments" id="lv-container" data-id="city" data-uid="your uid"><script>(function(d, s) {var j, e = d.getElementsByTagName(s)[0];if (typeof LivereTower === 'function') { return; } j = d.createElement(s);j.src = 'https://cdn-city.livere.com/js/embed.dist.js';j.async = true;e.parentNode.insertBefore(j, e);})(document, 'script');</script></div></main><footer class="foot"><div class="foot-copy">&copy; 2016-2018 JiaojiaoFu</div></footer><script src="/js/scroller.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+</body></html>
